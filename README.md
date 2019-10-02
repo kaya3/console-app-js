@@ -50,12 +50,12 @@ These options control how the app looks visually.
 - `fontSize` controls the font size of all text, e.g. `16`.
 
 
-## API
+## Methods
 
 A `ConsoleApp` has the following methods for the app's output:
 - `app.println(text)` prints a line of text.
 - `app.println(text, style)` prints a line of text, applying a style to it (given as a CSS string).
-- `app.print(text)` prints text, without a newline. Note that the next input prompt will *always* appear on a new line. `style is an optional parameter.
+- `app.print(text)` prints text, without a newline. Note that the next input prompt will *always* appear on a new line.
 - `app.print(text, style)` prints text, applying a style to it (given as a CSS string).
 - `app.clear()` clears the console of all previously-printed text.
 - `app.setPrompt(prompt)` changes the prompt.
@@ -94,6 +94,6 @@ var app = ConsoleApp({
     editorText: 'This is the text you will search in by default.',
 });
 
-app.println("This app will count how many times the word occurs in a text.");
+app.println("This app will count how many times a word occurs in a text.");
 app.println("To edit the text, press Ctrl-E. Press Ctrl-R when you have finished editing.");
 ```
