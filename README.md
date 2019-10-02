@@ -91,7 +91,8 @@ var app = ConsoleApp({
             out.println("That word appears " + count + " time(s).");
         }
     },
-    editorText: 'This is the text you will search in by default.',
+    editable: true,
+    editorText: 'This is the text you will search in by default.'
 });
 
 app.println("This app will count how many times a word occurs in a text.");
