@@ -114,6 +114,8 @@ function ConsoleApp(options) {
 	c.onError = options.onError || function onError(e) {
 		c.println(e.toString(), options.errorTextStyle);
 	};
+	c.onConsoleMode = options.onConsoleMode;
+	c.onEditMode = options.onEditMode;
 	c.consoleMode = function consoleMode() {
 		try {
 			c.currentMode = 'console';
