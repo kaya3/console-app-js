@@ -6,7 +6,7 @@ function ConsoleApp(options) {
 	
 	options = options || {};
 	if(!options.backgroundColor) { options.backgroundColor = 'black'; }
-	if(!options.textStyle) { options.textStyle = 'font-size: 18px; color: #d0d0d0;'; }
+	if(!options.textStyle) { options.textStyle = 'color: #d0d0d0;'; }
 	if(!options.inputTextStyle) { options.inputTextStyle = 'color: white;'; }
 	if(!options.errorTextStyle) { options.errorTextStyle = 'color: #e80000;'; }
 	if(!options.fontSize) { options.fontSize = 18; }
@@ -71,6 +71,7 @@ function ConsoleApp(options) {
 		}
 	};
 	inputElement.addEventListener('keydown', function(e) {
+		var k = String.fromCharCode(e.which).toLowerCase();
 		if(e.keyCode === 13) {
 			try {
 				c.print(options.prompt);
@@ -83,14 +84,10 @@ function ConsoleApp(options) {
 			mainContainer.scrollTop = mainContainer.scrollHeight;
 			e.preventDefault();
 			return false;
-		}
-	});
-	window.addEventListener('keydown', function(e) {
-		if(e.ctrlKey || e.metaKey) {
-			var k = String.fromCharCode(e.which).toLowerCase();
-			if(k === 'r') {
+		} else if(options.editable && (e.ctrlKey || e.metaKey) && (k === 'r' || k === 'e')) {
+			if(k === 'r' && c.currentMode === 'edit') {
 				c.consoleMode();
-			} else if(k === 'e' && options.editable) {
+			} else if(k === 'e' && c.currentMode === 'console') {
 				c.editMode();
 			}
 			e.preventDefault();
@@ -117,8 +114,9 @@ function ConsoleApp(options) {
 	c.onError = options.onError || function onError(e) {
 		c.println(e.toString(), options.errorTextStyle);
 	};
-	c.consoleMode = function consoleMode(mode) {
+	c.consoleMode = function consoleMode() {
 		try {
+			c.currentMode = 'console';
 			editorContainer.className = 'hidden';
 			mainContainer.className = '';
 			c.enable();
@@ -129,8 +127,9 @@ function ConsoleApp(options) {
 			c.onError(e);
 		}
 	};
-	c.editMode = function editMode(mode) {
+	c.editMode = function editMode() {
 		try {
+			c.currentMode = 'edit';
 			mainContainer.className = 'hidden';
 			editorContainer.className = '';
 			editorElement.focus();
