@@ -88,7 +88,7 @@ var app = ConsoleApp({
         if(word) {
             var text = app.editorText();
             var count = text.split(word).length - 1;
-            out.println("That word appears " + count + " time(s).");
+            app.println("That word appears " + count + " time(s).");
         }
     },
     editable: true,
