@@ -84,10 +84,13 @@ function ConsoleApp(options) {
 			mainContainer.scrollTop = mainContainer.scrollHeight;
 			e.preventDefault();
 			return false;
-		} else if(options.editable && (e.ctrlKey || e.metaKey) && (k === 'r' || k === 'e')) {
+		}
+	});
+	document.addEventListener('keydown', function(e) {
+		if((e.ctrlKey || e.metaKey) && (k === 'r' || k === 'e')) {
 			if(k === 'r' && c.currentMode === 'edit') {
 				c.consoleMode();
-			} else if(k === 'e' && c.currentMode === 'console') {
+			} else if(options.editable && k === 'e' && c.currentMode === 'console') {
 				c.editMode();
 			}
 			e.preventDefault();
