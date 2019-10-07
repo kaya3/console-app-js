@@ -71,7 +71,6 @@ function ConsoleApp(options) {
 		}
 	};
 	inputElement.addEventListener('keydown', function(e) {
-		var k = String.fromCharCode(e.which).toLowerCase();
 		if(e.keyCode === 13) {
 			try {
 				c.print(options.prompt);
@@ -87,6 +86,7 @@ function ConsoleApp(options) {
 		}
 	});
 	document.addEventListener('keydown', function(e) {
+		var k = String.fromCharCode(e.which).toLowerCase();
 		if((e.ctrlKey || e.metaKey) && (k === 'r' || k === 'e')) {
 			if(k === 'r' && c.currentMode === 'edit') {
 				c.consoleMode();
